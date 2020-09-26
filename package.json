@@ -1,0 +1,22 @@
+{
+  "name": "food-engine",
+  "version": "1.0.0",
+  "description": "Node introduction",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ces-D/Food-Engine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ces-D/Food-Engine/issues"
+  },
+  "homepage": "https://github.com/Ces-D/Food-Engine#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
