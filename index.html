@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css" />
     <title>Food Engine</title>
 </head>
 
 <body>
-    <div class="spoon container-lg">
+    <div class="container-lg mt-4">
         <h1 class="justify-content-center font-weight-bold text-center">
-            FOOD ENGINE
+            What's in your Fridge?
         </h1>
-        <p class="text-justify">
-            Ideally you would list down the ingredients you have available and in return you would be redirected to the
-            recipes available to you. Additions could include the nutritional facts of the recipes upon click/choice.
+        <p class="text-center p-3">
+            Enter your ingredients to be returned recipes you can make!
         </p>
-        <form class="form-control-lg">
-            <input type="text" name="Ingredient" placeholder="Ingredients" />
-        </form>
+        <div class="border mx-auto p-3">
+            <form class="">
+                <input type="text" class="w-100 p-2 my-2" name="ingredient" placeholder="Bacon, Egg, Cheese" required />
+                <button type="submit" class="btn btn-primary btn-block my-2">Search</button>
+            </form>
+        </div>
     </div>
 </body>
 
