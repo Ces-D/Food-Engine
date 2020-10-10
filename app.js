@@ -1,15 +1,24 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const router = express.Router();
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var exphs = require('express-handlebars')
 
-router.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
-  //__dirname : It will resolve to your project folder.
-});
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-//add the router
-app.use('/', router);
-app.listen(process.env.port || 3000);
+var app = express();
 
-console.log('Running at Port 3000');
+app.engine('handlebars', exphs());
+app.set('view engine', 'handlebars')
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+module.exports = app;
