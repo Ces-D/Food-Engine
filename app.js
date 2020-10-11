@@ -3,6 +3,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var exphs = require("express-handlebars");
+var bodyParser = require('body-parser')
 
 var indexRouter = require("./routes/index");
 
@@ -11,7 +12,9 @@ var app = express();
 app.engine("handlebars", exphs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(logger("dev"));
+app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()) // parse application/json
+app.use(logger(":method :url :status :res[content-length] - :response-time ms"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
