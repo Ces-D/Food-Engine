@@ -1,0 +1,12 @@
+<div class="container">
+    <ul class="list-group list-group-flush">
+        {{#each spoonResponse}}
+        <li class="list-group-item">
+            <h3>
+                {{this.title}}
+            </h3>
+            <img src={{this.image}} class="img-thumbnail" alt={{this.title}}>
+        </li>
+        {{/each}}
+    </ul>
+</div>
