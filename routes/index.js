@@ -8,15 +8,25 @@ router.get("/", (req, res, next) => {
 });
 
 // POST Submit Form & Display Response
-router.post("/submit", (req, res, next) => {
-    let urlString = Object.keys(req.body)
-        .map((key) => `${key}=${req.body[key]}`)
-        .join("&");
-    console.log(`${process.env.SPOON}?${urlString}`);
-    axios
-        .get(`${process.env.SPOON}?${urlString}`)
-        .then((response) => res.json(response.data))
-        .catch((err) => console.log(err));
+router.post("/submit", spoonRequest, (req, res, next) => {
+    console.log(req.spoonResponse)
+    res.render("spoonResponse", {spoonResponse: req.spoonResponse})
 });
+
+// Spoon Request Middleware
+function spoonRequest(req, res, next) {
+    let params = req.body;
+    params["number"] = 30;
+
+    axios
+        .get(process.env.SPOON, {
+            params: params,
+        })
+        .then((response) => {
+            req.spoonResponse = response.data;
+            next();
+        })
+        .catch((error) => console.log(error));
+}
 
 module.exports = router;
