@@ -1,26 +1,11 @@
-<div class= "container">
-    <h1 class="justify-content-center font-weight-bold text-center">
-        What's in your Fridge?
+<div class="container">
+    <h1 class="justify-content-center font-weight-bold text-center p-3">
+        Guess the Macro's
     </h1>
-    <p class="text-center p-3">
-        Enter your ingredients to be returned recipes you can make!
+    <p class="justify-content-center text-center font-weight-bold"> Enter your suspected macros to see how keen your eye
+        is!</p>
+    <p class="p-3">
+        A special tool for those not looking to weigh their food, but still want to know their macros. Practice guessing
+        the nutritional value here.
     </p>
-    <div class="border rounded mx-auto mt-3" id="index">
-        <form action="/submit" method="POST">
-            <div class="form-group">
-                <label class="ml-2" for="apiKey">Enter your Api Key</label>
-                <input class="form-control" type="password" name="apiKey" id="api">
-                <small class="form-text text-muted">Request an <a
-                        href="https://spoonacular.com/food-api/console#Plan">API
-                        Key</a></small>
-            </div>
-
-            <div class="form-group">
-                <label class="ml-2" for="ingredients">Enter your Ingredients</label>
-                <input class="form-control" type="text" name="ingredients" id="ingredients">
-            </div>
-
-            <button type="submit" class="btn">Discover</button>
-        </form>
-        </h1>
-    </div>
+    {{>requestForm}}
