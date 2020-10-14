@@ -1,0 +1,19 @@
+<form action="/settings" method="post" style="display:none" id="settings-form">
+    <div> Cuisines</div>
+    {{#each cuisine}}
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id={{this.name}} name={{this.name}} value={{this.name}}>
+        <label class="form-check-label" for={{this.name}}>{{this.name}}</label>
+    </div>
+    {{/each}}
+    <br>
+    <div>Diets</div>
+    {{#each diet}}
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id={{this.name}} name={{this.name}} value={{this.name}}>
+        <label class="form-check-label" for={{this.name}}>{{this.name}}</label>
+    </div>
+    {{/each}}
+    <br>
+    <input type="submit" value="Enter">
+</form>

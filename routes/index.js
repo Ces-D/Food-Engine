@@ -4,26 +4,56 @@ var axios = require("axios");
 
 // GET Display Form
 router.get("/", (req, res, next) => {
-    res.render("index");
+    res.render("index", {
+        cuisine: [
+            { name: "African" },
+            { name: "American" },
+            { name: "British" },
+            { name: "Cajun" },
+            { name: "Caribbean" },
+            { name: "Chinese" },
+            { name: "Eastern European" },
+            { name: "European" },
+            { name: "French" },
+            { name: "German" },
+            { name: "Greek" },
+            { name: "Indian" },
+            { name: "Irish" },
+            { name: "Italian" },
+            { name: "Japanese" },
+            { name: "Jewish" },
+            { name: "Korean" },
+            { name: "Latin American" },
+            { name: "Mediterranean" },
+            { name: "Mexican" },
+            { name: "Middle Eastern" },
+            { name: "Nordic" },
+            { name: "Southern" },
+            { name: "Spanish" },
+            { name: "Thai" },
+            { name: "Vietnamese" },
+        ],
+        diet: [
+            { name: "Gluten-free" },
+            { name: "Vegan" },
+            { name: "Vegetarian" },
+            { name: "Paleo" },
+        ],
+    });
 });
 
-// POST Submit Form & Display Response
-router.post("/submit", spoonRequest, (req, res, next) => {
-    console.log(req.spoonResponse)
-    res.render("spoonResponse", {spoonResponse: req.spoonResponse})
-});
-
-// Spoon Request Middleware
-function spoonRequest(req, res, next) {
-    let params = req.body;
-    params["number"] = 30;
-
+// Spoon Request
+function imageLoad(req, res, next) {
     axios
-        .get(process.env.SPOON, {
-            params: params,
+        .get(process.env.COMPLEX_SEARCH, {
+            params: {
+                number: 1,
+                addRecipeNutrition: true,
+                apiKey: process.env.SPOON_KEY,
+            },
         })
         .then((response) => {
-            req.spoonResponse = response.data;
+            console.log(response.data);
             next();
         })
         .catch((error) => console.log(error));
