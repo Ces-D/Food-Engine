@@ -1,0 +1,21 @@
+<form action="/submit" method="post" id="settings-form">
+    <div> Cuisines</div>
+    <div class="form-check form-check-inline">
+        {{#each cuisine}}
+        <input class="form-check-input" type="checkbox" id="cuisine" name="cuisine" value={{this.name}}>
+        <label class="form-check-label" for="cuisine">{{this.name}}</label>
+        {{/each}}
+    </div>
+    <br>
+    <div>Diets</div>
+    <div class="form-check form-check-inline">
+        {{#each diet}}
+
+        <input class="form-check-input" type="checkbox" id="diet" name="diet" value={{this.name}}>
+        <label class="form-check-label" for={{this.name}}>{{this.name}}</label>
+        {{/each}}
+
+    </div>
+    <button class="btn-lg" type="submit">Submit</button>
+    <br>
+</form>
