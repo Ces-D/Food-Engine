@@ -40,7 +40,9 @@ app.use(cookieParser());
 
 // Routers
 var indexRouter = require("./routes/index");
+var preferenceRouter = require("./routes/preferences")
 
 app.use("/", indexRouter);
+app.use("/preference", preferenceRouter)
 
 module.exports = app;

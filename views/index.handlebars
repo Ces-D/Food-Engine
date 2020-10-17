@@ -2,11 +2,35 @@
     <img src={{foodImage}} class="mr-3" alt={{foodTitle}}>
     <div class="media-body">
         <h5 class="mt-0"><a href={{foodSource}}>{{foodTitle}}</a></h5>
-        {{foodSummary}}
     </div>
-</div>
+{{#if foodCarb}}
+<div>{{foodCarb}}</div>
+{{/if}}
+{{#if foodCalorie}}
+<div>{{foodCalorie}}</div>
+{{/if}}
+{{#if foodProtein}}
+<div>{{foodProtein}}</div>
+{{/if}}
+{{#if foodFat}}
+<div>{{foodFat}}</div>
+{{/if}}
+
+{{#if guessCarb}}
+<div>{{guessCarb}}</div>
+{{/if}}
+{{#if guessCalorie}}
+<div>{{guessCalorie}}</div>
+{{/if}}
+{{#if guessProtein}}
+<div>{{guessProtein}}</div>
+{{/if}}
+{{#if guessFat}}
+<div>{{guessFat}}</div>
+{{/if}}
+
 <div class="border rounded mx-auto mt-3" id="index">
-    <form method="GET" action="/submit">
+    <form method="POST" action="/">
         <div class="form-group">
             <label for="calories">Calories</label>
             <input type="text" class="form-control" id="calories">
@@ -16,7 +40,7 @@
             <input type="text" class="form-control" id="carbs">
         </div>
         <div class="form-group">
-            <label for="protein">protein</label>
+            <label for="protein">Protein</label>
             <input type="text" class="form-control" id="apiKey">
         </div>
         <div class="form-group">
@@ -26,5 +50,4 @@
         <input type="submit" value="Guess">
     </form>
 </div>
-<button class="btn-secondary">Next</button>
 <a href="/preferences">Preferences</a>
