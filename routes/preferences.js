@@ -40,7 +40,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.post("/preferences", (req, res, next) => {
+router.post("/submit", (req, res, next) => {
     res.cookie("preferences", req.body);
     res.redirect("/");
 });
