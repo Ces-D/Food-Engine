@@ -1,36 +1,22 @@
-<div class="media">
-    <img src={{foodImage}} class="mr-3" alt={{foodTitle}}>
-    <div class="media-body">
-        <h5 class="mt-0"><a href={{foodSource}}>{{foodTitle}}</a></h5>
+<div class="container">
+    <div class="card flex-row flex-wrap">
+        <div class="card-header p-2">
+            <img src={{foodImage}} alt={{foodTitle}}>
+        </div>
+        <div class="card-block px-2">
+            <h4 class="card-title"><a href={{foodSourceUrl}}>{{foodTitle}}</a></h4>
+            <p class="card-text">
+                {{foodProteins}} <br>
+                {{foodCarbs}} <br>
+                {{foodFats}} <br>
+                {{foodCalories}} <br>
+            </p>
+        </div>
     </div>
-{{#if foodCarb}}
-<div>{{foodCarb}}</div>
-{{/if}}
-{{#if foodCalorie}}
-<div>{{foodCalorie}}</div>
-{{/if}}
-{{#if foodProtein}}
-<div>{{foodProtein}}</div>
-{{/if}}
-{{#if foodFat}}
-<div>{{foodFat}}</div>
-{{/if}}
-
-{{#if guessCarb}}
-<div>{{guessCarb}}</div>
-{{/if}}
-{{#if guessCalorie}}
-<div>{{guessCalorie}}</div>
-{{/if}}
-{{#if guessProtein}}
-<div>{{guessProtein}}</div>
-{{/if}}
-{{#if guessFat}}
-<div>{{guessFat}}</div>
-{{/if}}
+</div>
 
 <div class="border rounded mx-auto mt-3" id="index">
-    <form method="POST" action="/">
+    <form onsubmit="guessCheck()">
         <div class="form-group">
             <label for="calories">Calories</label>
             <input type="text" class="form-control" id="calories">
@@ -50,4 +36,4 @@
         <input type="submit" value="Guess">
     </form>
 </div>
-<a href="/preferences">Preferences</a>
+<a href="/preference">Preferences</a>

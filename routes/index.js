@@ -12,6 +12,7 @@ function apiRequest(req, res, next) {
                     addRecipeNutrition: true,
                     cuisine: req.cookies.preferences.cuisine,
                     diet: req.cookies.preferences.diet,
+                    offset: randomNumber,
                     apiKey: process.env.SPOON_KEY,
                 },
             })
@@ -19,7 +20,7 @@ function apiRequest(req, res, next) {
                 req.spoon = response.data.results[0];
                 next();
             })
-            .catch(res.render("error"));
+            .catch((error) => console.log(error));
     } else {
         axios
             .get(process.env.COMPLEX_SEARCH, {
@@ -34,43 +35,30 @@ function apiRequest(req, res, next) {
                 req.spoon = response.data.results[0];
                 next();
             })
-            .catch(res.render("error"));
+            .catch((error) => console.log(error));
     }
 }
 
-router.get("/", apiRequest, (req, res, next) => {
+function foodInformation(req, res, next) {
+    let nutrients = req.spoon.nutrition.nutrients;
+    req.foodCalories = nutrients.filter((obj) => obj.title === "Calories");
+    req.foodProteins = nutrients.filter((obj) => obj.title === "Protein");
+    req.foodFats = nutrients.filter((obj) => obj.title === "Fat");
+    req.foodCarbs = nutrients.filter((obj) => obj.title === "Carbohydrates");
+    next();
+}
+
+router.get("/", apiRequest, foodInformation, (req, res, next) => {
     res.render("index", {
         foodTitle: req.spoon.title,
-        foodSource: req.spoon.source,
+        foodImage: req.spoon.image,
+        foodSource: req.spoon.sourceUrl,
+        foodProteins: req.foodProteins,
+        foodCalories: req.foodCalories,
+        foodCarbs: req.foodCarbs,
+        foodFats: req.foodFats,
     });
 });
 
-router.post("/", (req, res, next) => {
-    let foodProteins = req.spoon.nutrients.filter((obj) => {
-        obj.title = "Protein";
-    });
-    let foodCalories = req.spoon.nutrients.filter((obj) => {
-        obj.title = "Calories";
-    });
-    let foodCarbs = req.spoon.nutrients.filter((obj) => {
-        obj.title = "Carbohydrates";
-    });
-    let foodFats = req.spoon.nutrients.filter((obj) => {
-        obj.title = "Fats";
-    });
-    let [guessCalories, guessCarbs, guessProteins, guessFats] = req.body;
-    res.render("guess", {
-        foodTitle: req.spoon.title,
-        foodSource: req.spoon.source,
-        foodProtein: foodProteins,
-        foodCalorie: foodCalories,
-        foodCarb: foodCarbs,
-        foodFat: foodFats,
-        guessCalorie: guessCalories,
-        guessCarb: guessCarbs,
-        guessFat: guessFats,
-        guessProtein: guessProteins,
-    });
-});
 
 module.exports = router;
