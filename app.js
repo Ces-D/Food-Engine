@@ -5,6 +5,7 @@ var logger = require("morgan");
 var exphs = require("express-handlebars");
 var bodyParser = require("body-parser");
 
+
 var app = express();
 
 // Env
@@ -37,6 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Cookies
 app.use(cookieParser());
+
 
 // Routers
 var indexRouter = require("./routes/index");

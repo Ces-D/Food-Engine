@@ -1,18 +1,37 @@
-<div class="container">
-    <div class="card flex-row flex-wrap">
-        <div class="card-header p-2">
-            <img src={{foodImage}} alt={{foodTitle}}>
+{{!-- <div class="container">
+    <div class="flex-row flex-wrap">
+        <div class="p-2">
+            <img src={{foodImage}} alt={{foodTitle}} class="img-thumbnail">
         </div>
         <div class="card-block px-2">
             <h4 class="card-title"><a href={{foodSourceUrl}}>{{foodTitle}}</a></h4>
-            <p class="card-text">
-                {{foodProteins}} <br>
-                {{foodCarbs}} <br>
-                {{foodFats}} <br>
-                {{foodCalories}} <br>
-            </p>
+            <div class="nutrition-block" style="display: none;">
+                <p class="card-text">
+                    {{foodProteins}} <br>
+                    {{foodCarbs}} <br>
+                    {{foodFats}} <br>
+                    {{foodCalories}} <br>
+                </p>
+            </div>
         </div>
     </div>
+</div>
+<div id="guess-block">
+
+</div> --}}
+
+<div class="container">
+    <div class="flex-row flex-wrap">
+        <div id="food_image"></div>
+        {{!-- <h2 class="text-left text-wrap text-uppercase font-weight-bold"><a id="food_header"></a></h2> --}}
+        <div id="food_masthead">
+            <h2></h2>
+        </div>
+        <div id="display_facts" class="d-none">
+            <ul class="list-group list-group-flush" id="facts_list"></ul>
+        </div>
+    </div>
+
 </div>
 
 <div class="border rounded mx-auto mt-3" id="index">
@@ -27,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="protein">Protein</label>
-            <input type="text" class="form-control" id="apiKey">
+            <input type="text" class="form-control" id="protein">
         </div>
         <div class="form-group">
             <label for="fats">Fats</label>
@@ -37,3 +56,5 @@
     </form>
 </div>
 <a href="/preference">Preferences</a>
+<br>
+<button id="next_request" class="btn btn-primary">Guess Again</button>
